@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Lato, Inter } from 'next/font/google'
+import { Cormorant_Garamond, Inter } from 'next/font/google'
 import { Providers } from './providers'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -14,9 +14,9 @@ import dynamic from 'next/dynamic'
 
 const CookieConsent = dynamic(() => import('@/components/cookie-consent'))
 
-const heading = Lato({
+const heading = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-heading',
   display: 'swap',
 })
@@ -30,10 +30,10 @@ const body = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Store — Modern Commerce',
-    template: '%s | Store',
+    default: 'Hearth & Haven — Quietly Crafted Home Goods',
+    template: '%s | Hearth & Haven',
   },
-  description: 'Discover curated products crafted with care. A modern ecommerce experience.',
+  description: 'Hand-poured candles, heirloom linens, and hand-thrown ceramics. Thoughtful home goods made to settle in and stay a while.',
 }
 
 export default function RootLayout({

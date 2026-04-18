@@ -11,7 +11,7 @@ export default function AnnouncementBar() {
   return (
     <div className="relative bg-foreground text-primary-foreground">
       <div className="container-custom flex items-center justify-center py-2.5 text-sm tracking-wide">
-        <p>Free shipping on orders over $75 — Shop the new collection</p>
+        <p>Complimentary shipping over $75 · Buy 2 candles, get the 3rd free</p>
         <button
           onClick={() => setIsVisible(false)}
           className="absolute right-4 p-1 hover:opacity-70 transition-opacity"

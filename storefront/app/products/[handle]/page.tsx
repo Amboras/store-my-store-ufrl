@@ -7,8 +7,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Truck, RotateCcw, Shield, ChevronRight } from 'lucide-react'
 import ProductActions from '@/components/product/product-actions'
+import ConversionPanel from '@/components/product/conversion-panel'
 import ProductAccordion from '@/components/product/product-accordion'
 import { ProductViewTracker } from '@/components/product/product-view-tracker'
+
+const PRIMARY_HANDLES = new Set(['amber-oak-soy-candle'])
 import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import { type VariantExtension } from '@/components/product/product-price'
 
@@ -177,24 +180,30 @@ export default async function ProductPage({
               value={product.variants?.[0]?.calculated_price?.calculated_amount ?? null}
             />
 
-            {/* Variant Selector + Price + Add to Cart (client component) */}
-            <ProductActions product={product} variantExtensions={variantExtensions} />
+            {/* Variant Selector + Price + Add to Cart */}
+            {PRIMARY_HANDLES.has(product.handle) ? (
+              <ConversionPanel product={product} variantExtensions={variantExtensions} />
+            ) : (
+              <>
+                <ProductActions product={product} variantExtensions={variantExtensions} />
 
-            {/* Trust Signals */}
-            <div className="grid grid-cols-3 gap-4 py-6 border-t">
-              <div className="text-center">
-                <Truck className="h-5 w-5 mx-auto mb-1.5" strokeWidth={1.5} />
-                <p className="text-xs text-muted-foreground">Free Shipping</p>
-              </div>
-              <div className="text-center">
-                <RotateCcw className="h-5 w-5 mx-auto mb-1.5" strokeWidth={1.5} />
-                <p className="text-xs text-muted-foreground">30-Day Returns</p>
-              </div>
-              <div className="text-center">
-                <Shield className="h-5 w-5 mx-auto mb-1.5" strokeWidth={1.5} />
-                <p className="text-xs text-muted-foreground">Secure Checkout</p>
-              </div>
-            </div>
+                {/* Trust Signals */}
+                <div className="grid grid-cols-3 gap-4 py-6 border-t">
+                  <div className="text-center">
+                    <Truck className="h-5 w-5 mx-auto mb-1.5 text-accent" strokeWidth={1.5} />
+                    <p className="text-xs text-muted-foreground">Free Shipping</p>
+                  </div>
+                  <div className="text-center">
+                    <RotateCcw className="h-5 w-5 mx-auto mb-1.5 text-accent" strokeWidth={1.5} />
+                    <p className="text-xs text-muted-foreground">30-Day Returns</p>
+                  </div>
+                  <div className="text-center">
+                    <Shield className="h-5 w-5 mx-auto mb-1.5 text-accent" strokeWidth={1.5} />
+                    <p className="text-xs text-muted-foreground">Secure Checkout</p>
+                  </div>
+                </div>
+              </>
+            )}
 
             {/* Accordion Sections */}
             <ProductAccordion
